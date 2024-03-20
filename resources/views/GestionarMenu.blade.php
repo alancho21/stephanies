@@ -4,7 +4,7 @@
 
 @section('extra-css')
     {{-- Si tienes estilos específicos para esta vista, enlázalos aquí --}}
-    <link href="{{ asset('cssStyles/GestionarMenu.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/GestionarMenu.css') }}" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 @endsection
 
