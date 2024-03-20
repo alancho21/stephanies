@@ -4,9 +4,9 @@
 
 .textonav {
     display: flex;
-    color: #000; /* Color negro */
-    font-size: 10px; /* Tamaño de letra pequeño (ajusta según tus preferencias) */
-    margin-top: 14px; /* Espacio en la parte superior (ajusta según tus preferencias) */
+    color: #000; 
+    font-size: 10px; 
+    margin-top: 14px; 
 }
 .navbar {
     background-color: #F2EADB;
@@ -27,19 +27,19 @@
     justify-content: center;
     align-items: center;
     flex-grow: 1;
-    color: #000; /* Cambiado a negro (#000) en lugar de #0000 */
+    color: #000; 
 }
 
 .navbar-center a {
     color: #000;
     padding: 10px;
     margin: 0 10px;
-    text-decoration: none; /* Agregado para eliminar el subrayado */
+    text-decoration: none; 
 }
 
 .logo-left, .logo-right {
-    width: 60px; /* Ajusta el tamaño según tus necesidades */
-    height: 60px; /* Ajusta el tamaño según tus necesidades */
+    width: 60px; 
+    height: 60px; 
 }
 
 @media only screen and (max-width: 768px) {
@@ -53,7 +53,7 @@
     }
 
     .navbar-center {
-        order: -1; /* Cambia el orden de los elementos en dispositivos pequeños */
+        order: -1; 
     }
 
     .navbar-center a {
@@ -65,13 +65,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 150px; /* Ajusta según tus preferencias */
+    margin-top: 150px; 
 }
 
 .textoo h1 {
     color: #000;
     font-size: 24px;
-    text-align: center; /* Alinea el texto al centro */
+    text-align: center; 
 }
 
 
@@ -79,9 +79,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 300px; /* Ajusta según tus preferencias */
-    margin: 0 auto; /* Centra la caja horizontalmente */
-    margin-top: 10px; /* Ajusta según tus preferencias */
+    width: 300px; 
+    margin: 0 auto; 
+    margin-top: 10px; 
 }
 
 .caja-texto {
@@ -90,11 +90,11 @@
     width: 100%;
     padding: 10px;
     border: 1px solid #D9D9D9;
-    background-color: #D9D9D9; /* Ajusta según tus preferencias */
+    background-color: #D9D9D9; 
 }
 
 .boton1 {
-    margin-top: 10px; /* Ajusta según tus preferencias */
+    margin-top: 10px;
 }
 
 .boton-rectangular {
@@ -108,7 +108,7 @@
 }
 
 .linea {
-    margin-top: 20px; /* Ajusta según tus preferencias */
+    margin-top: 20px; 
 }
 
 .linea-separacion1 {
@@ -121,13 +121,13 @@
 }
 
 .botones {
-    margin-top: 20px; /* Ajusta según tus preferencias */
-    
+    margin-top: 20px;
+
 }
 
 .boton-curvado1{
     padding: 10px 80px;
-    background-color: #1D74EC; /* Cambia el color según tus preferencias */
+    background-color: #1D74EC; 
     color: #fff;
     border: none;
     border-radius: 30px;
@@ -138,7 +138,7 @@
 
 .boton-curvado2 {
     padding: 10px 60px;
-    background-color: #3C5C9B; /* Cambia el color según tus preferencias */
+    background-color: #3C5C9B; 
     color: #fff;
     border: none;
     border-radius: 30px;
@@ -149,7 +149,7 @@
 
 .boton-curvado3 {
     padding: 10px 80px;
-    background-color: #000; /* Cambia el color según tus preferencias */
+    background-color: #000; 
     color: #fff;
     border: none;
     border-radius: 30px;
@@ -160,7 +160,7 @@
 
 .boton-curvado4 {
     padding: 10px 80px;
-    background-color: #2CDA84; /* Cambia el color según tus preferencias */
+    background-color: #2CDA84; 
     color: #fff;
     border: none;
     border-radius: 30px;
@@ -170,7 +170,7 @@
 }
 .boton-curvado5 {
     padding: 10px 100px;
-    background-color: #fff; /* Cambia el color según tus preferencias */
+    background-color: #fff; 
     color: #6CD084;
     border-color: #6CD084;
     border-radius: 20px;
@@ -178,33 +178,33 @@
     display: flex;
     align-items: center;
 }
-/* Ajusta el tamaño de la imagen según tus preferencias */
+
 .boton-curvadoimg1 {
     border-radius: 30px;
     width: 44px;
     height: 30px;
-    margin-right: 10px; /* Ajusta según tus preferencias */
+    margin-right: 10px; 
 }
 .boton-curvadoimg2 {
     width: 50px;
     height: 30px;
-    margin-right: 10px; /* Ajusta según tus preferencias */
+    margin-right: 10px; 
 }
 .boton-curvadoimg3 {
     width: 30px;
     height: 30px;
-    margin-right: 10px; /* Ajusta según tus preferencias */
+    margin-right: 10px;
 }
 .boton-curvadoimg4 {
     width: 30px;
     height: 30px;
-    margin-right: 10px; /* Ajusta según tus preferencias */
+    margin-right: 10px; 
 }
 
 
 
 .borroso {
-    filter: blur(1px); /* Ajusta la cantidad de desenfoque según prefieras */
+    filter: blur(1px); 
 }
 
 .position-relative {
@@ -214,7 +214,7 @@
 .texto-encima {
     position: absolute;
     top: 50%;
-    left: 35%; /* Ajusta el valor para mover el texto más a la izquierda */
+    left: 35%; 
     transform: translate(-50%, -50%);
     color: #fff;
     text-align: center;
@@ -224,8 +224,8 @@
 .texto-encima2 {
     position: absolute;
     top: 90%;
-    left: 35%; /* Ajusta el valor para mover el texto más a la izquierda */
-    transform: translate(-50%, -50%) scale(0.3); /* Ajusta el valor de scale para hacer el texto más pequeño */
+    left: 35%; 
+    transform: translate(-50%, -50%) scale(0.3); 
     color: #fff;
     text-align: center;
     z-index: 2;
@@ -233,7 +233,7 @@
 
 
 @media only screen and (max-width: 768px) {
-    /* Resto de tus estilos responsivos ... */
+    
 }
 
 .form-section {
