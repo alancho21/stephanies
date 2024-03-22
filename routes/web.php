@@ -7,7 +7,7 @@ Route::get('/', function () {
 });
 
 Route::get('/iniciosesion', function () {
-    return view('inicioSesion');
+    return view('InicioDeSesion');
 });
 Route::get('/gestionarmenu', function () {
     return view('gestionarMenu');
