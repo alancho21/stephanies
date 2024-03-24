@@ -33,7 +33,7 @@
         <h1 id="titulo">Registrate para Continuar</h1>
         <img id="logo"src="images/v7_17.png" alt="logo">
         <div class="user-form-container">
-            <form id="user-form"  action="/iniciosesion" method="POST">
+            <form id="user-form"  action="{{ route('registro.store') }}" method="POST">
             @csrf
                 <!-- Campos de formulario aquí -->
                 <div class="input-group"><label for="nombre">Nombre</label><input type="text"  id="Nombre" name="nombre"></div>
