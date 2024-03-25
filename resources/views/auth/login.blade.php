@@ -34,7 +34,7 @@
                                         <h4 class="mt-1 mb-5 pb-1">¡Cafetería Stephanies!</h4>
                                     </div>
 
-                                    <form action="{{ route('login') }}" method="post">
+                                    <form id="loginForm" action="{{ route('login') }}" method="post" novalidate>
                                         @csrf
                                         <p>Inicie sesión con su cuenta</p>
 
@@ -42,22 +42,27 @@
                                             <label class="form-label" for="form2Example11">Usuario</label>
                                             <input type="name" name="name" id="form2Example11"
                                                 class="form-control" required />
+                                            <div class="invalid-feedback">Por favor, ingrese un nombre de usuario.</div>
                                         </div>
 
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="form2Example11">Email</label>
                                             <input type="email" name="email" id="form2Example11"
                                                 class="form-control" required />
+                                            <div class="invalid-feedback">Por favor, ingrese un correo electrónico válido.</div>
                                         </div>
 
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="form2Example22">Contraseña</label>
                                             <input type="password" name="password" id="form2Example22"
                                                 class="form-control" required />
+                                            <div class="invalid-feedback">Por favor, ingrese una contraseña.</div>
                                         </div>
 
                                         <div class="text-center pt-1 mb-5 pb-1">
-                                            <a href="/menuadmin" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Ingresar</a>
+                                            <button id="submitButton"
+                                                class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
+                                                type="submit">Ingresar</button>
                                         </div>
 
                                     </form>
@@ -84,6 +89,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('submitButton').addEventListener('click', function (event) {
+                var form = document.getElementById('loginForm');
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            });
+        });
+    </script>
 </body>
 
 </html>
