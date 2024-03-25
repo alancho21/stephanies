@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,7 +21,7 @@ Route::get('/menuadmin', function () {
     return view('menuAdmin');
 });
 
-
+Route::resource('users', UserController::class);
 
 Auth::routes();
 
