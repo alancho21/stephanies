@@ -19,7 +19,7 @@ Route::get('/gestionarusuarios', function () {
     return view('gestionarusuarios');
 });
 Route::get('/menuadmin', function () {
-    return view('menuAdmin');
+    return view('MenuAdmin');
 });
 
 Route::resource('users', UserController::class);
