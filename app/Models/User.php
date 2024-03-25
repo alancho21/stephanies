@@ -30,8 +30,15 @@ class User extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'email'];
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
+    }
 
-
-
+    public function role(){
+        return $this->belongsTo(role::class);
+    }
 }
