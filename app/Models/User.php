@@ -37,4 +37,8 @@ class User extends Model
             'password' => 'hashed',
         ];
     }
+
+    public function role(){
+        return $this->belongsTo(role::class);
+    }
 }
