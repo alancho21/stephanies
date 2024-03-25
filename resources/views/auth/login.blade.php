@@ -57,8 +57,7 @@
                                         </div>
 
                                         <div class="text-center pt-1 mb-5 pb-1">
-                                            <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
-                                                type="submit">Ingresar</button>
+                                            <a href="/menuadmin" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Ingresar</a>
                                         </div>
 
                                     </form>
