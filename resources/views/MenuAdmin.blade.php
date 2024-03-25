@@ -14,7 +14,7 @@
 <section class="container">
         <div class="header">Bienvenido Admin</div>
         <div class="card-container">
-            <div class="card" >
+            <div class="card" onclick="location.href='{{ route('products.index') }}'" >
                 <img src="images\v225_131.png" class="icon" alt="Gestionar Menú">
                 <div class="text">Gestionar Menú</div>
             </div>
