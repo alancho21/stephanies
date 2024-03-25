@@ -23,6 +23,7 @@ class ProductRequest extends FormRequest
     {
         return [
 			'name' => 'required|string',
+            'price' => 'required|numeric',
 			'description' => 'required|string',
 			'category_id' => 'required',
 			'ruta_imagen' => 'string',
