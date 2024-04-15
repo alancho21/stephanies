@@ -21,7 +21,7 @@ class OrderFactory extends Factory
         return [
             'customer_name' => $this->faker->name,
             'total_amount' => $this->faker->randomFloat(2, 100, 1000),
-            'status' => $this->faker->randomElement(['pending', 'completed', 'shipped']),
+            'status' => 'pending',
         ];
     }
 }

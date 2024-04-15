@@ -21,14 +21,26 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
+           // Array con los nombres de los productos y los IDs de las categorías
+           $products = [
+            ['name' => 'Hamburguesa de pollo', 'category_id' => 1],
+            ['name' => 'Hamburguesa de Res', 'category_id' => 1],
+            ['name' => 'Chilaquiles', 'category_id' => 2],
+            ['name' => 'Ensalada', 'category_id' => 2],
+            ['name' => 'Malteada de Vainilla', 'category_id' => 3],
+            ['name' => 'Malteada de Chocolate', 'category_id' => 3],
+            // Agrega más productos según lo necesites
+        ];
+
+        // Obtener un elemento aleatorio del array
+        $product = $this->faker->unique()->randomElement($products);
+
         return [
-            'name' => $this->faker->unique()->word,
+            'name' => $product['name'],
             'price' => $this->faker->randomFloat(2, 50, 200),
             'description' => $this->faker->sentence,
-            'category_id' => function () {
-                return \App\Models\Category::inRandomOrder()->first()->id;
-            },
-            'ruta_imagen' => $this->faker->imageUrl(640, 480, 'products', true),
+            'category_id' => $product['category_id'],
+            'ruta_imagen' => $this->faker->imageUrl(),
         ];
     }
 }

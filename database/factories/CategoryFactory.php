@@ -16,8 +16,13 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
+        $categories = ['Hamburguesas', 'Ensaladas', 'Bebidas'];
+
+        // Generar nombre único de categoría
+        $name = $this->faker->unique()->randomElement($categories);
+
         return [
-            'name' => $this->faker->randomElement(['Hambuguesas','Emsaladas','Bebidas']),
+            'name' => $name,
         ];
     }
 }
