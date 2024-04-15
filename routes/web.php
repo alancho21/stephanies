@@ -4,6 +4,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,6 +22,8 @@ Route::get('/gestionarusuarios', function () {
 Route::get('/menuadmin', function () {
     return view('MenuAdmin');
 });
+
+Route::get('/chefs', [OrderController::class, 'index']);
 
 Route::resource('users', UserController::class);
 
