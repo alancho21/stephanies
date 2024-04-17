@@ -24,5 +24,15 @@ class OrderController extends Controller
 
        return view('Chefs', ['orders' => $orders]);
    }
+
+   public function index2()
+   {
+       
+
+    $orders = Order::with('orderDetails')
+                   ->where('status', 'Pending')
+                   ->get();
+    return view('cajeroVer', ['orders' => $orders]);
+   }
 }
 
