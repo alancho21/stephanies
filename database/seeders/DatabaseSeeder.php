@@ -60,8 +60,8 @@ class DatabaseSeeder extends Seeder
 
         // Crear productos y órdenes con detalles
         Product::factory(6)->create();
-        Order::factory(50)->create();
-        OrderDetail::factory(100)->create();
+        Order::factory(5)->create();
+        OrderDetail::factory(10)->create();
     }
        
         
