@@ -7,8 +7,8 @@
         <input type="text" name="nombre" class="form-control">
     </div>
     <div>
-        <label for="">Email</label>
-        <input type="text" name="email" class="form-control">
+        <label for="">Contraseña</label>
+        <input type="text" name="contraseña" class="form-control">
     </div>
     <div>
         <input  type="submit" value="Enviar" class="btn btn-success">

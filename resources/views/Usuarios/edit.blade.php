@@ -9,8 +9,8 @@
         <input type="text" name="nombre" value="{{$Usuarios->nombre}}" class="form-control">
     </div> 
     <div>
-        <label for="">Email</label>
-        <input type="text" name="email" value="{{$Usuarios->email}}" class="form-control">
+        <label for="">Contraseña</label>
+        <input type="text" name="contraseña" value="{{$Usuarios->contraseña}}" class="form-control">
     </div>
     <div>
         <input  type="submit" value="Enviar">

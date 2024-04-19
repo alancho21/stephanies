@@ -27,7 +27,7 @@ class UsuariosController extends Controller
     {
         $usuario =  new Usuarios();
         $usuario->nombre = $request->nombre;
-        $usuario->email = $request->email;
+        $usuario->contraseña = $request->contraseña;
         $usuario->save();
         return redirect()->route('Usuarios.index');
     }
@@ -57,7 +57,7 @@ class UsuariosController extends Controller
     {
         $usuario = Usuarios::find($id);
         $usuario->nombre = $request->nombre;
-        $usuario->email = $request->email;
+        $usuario->contraseña = $request->contraseña;
         $usuario->save();
         return redirect()->route('Usuarios.index');
     }

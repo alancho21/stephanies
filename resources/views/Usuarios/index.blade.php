@@ -7,7 +7,7 @@
     <thead>
         <th>id</th>
         <th>Usuario</th>
-        <th>Email</th>
+        <th>Contraseña</th>
         <th>Opciones</th>
     </thead>
     <tbody>
@@ -15,7 +15,7 @@
             <tr>
                 <td>{{ $usuario->id }}</td>
                 <td>{{ $usuario->nombre }}</td>
-                <td>{{ $usuario->email }}</td>
+                <td>{{ $usuario->contraseña }}</td>
                 <td class="btn-group">
                     <a href="{{ route('Usuarios.show', $usuario->id) }}"class="btn btn-primary">+</a> 
                     <a href="{{ route('Usuarios.edit', $usuario->id) }}"class="btn btn-warning">Editar</a> 
