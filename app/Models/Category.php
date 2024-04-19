@@ -12,4 +12,13 @@ class Category extends Model
     public function products(){
         return $this->hasMany(Product::class);
     }
+
+    protected $fillable = [
+        'name',
+    ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'chef_categories', 'category_id', 'user_id');
+    }
 }

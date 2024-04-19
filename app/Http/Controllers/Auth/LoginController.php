@@ -5,35 +5,49 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
+    // ... tus otros métodos
 
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function showLoginForm()
     {
-        $this->middleware('guest')->except('logout');
+        return view('auth.login');
     }
+
+    public function login(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'password' => 'required|string',
+        ]);
+    
+        $credentials = $request->only('name', 'password');
+    
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+    
+            switch ($user->role_id) {
+                case 1:
+                    return redirect()->intended('/manuAdmin');
+                    break;
+                case 2:
+                    return redirect()->intended('/chefs');
+                    break;
+                case 3:
+                    return redierct()->intended('/cajero');
+                    break;
+                default:
+                    return redirect()->intended('/home');
+                    break;
+            }
+        }
+    
+        return back()->withErrors([
+            'name' => 'Las credenciales proporcionadas no coinciden con nuestros registros.',
+        ]);
+    }
+    
 }
