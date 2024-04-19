@@ -52,5 +52,9 @@ class Product extends Model
         return $this->hasMany(\App\Models\Stock::class, 'id', 'product_id');
     }
     
+    public function orderDetails()
+{
+    return $this->hasMany(OrderDetail::class);
+}
 
 }

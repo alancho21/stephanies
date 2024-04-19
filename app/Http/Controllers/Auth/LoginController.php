@@ -31,13 +31,13 @@ class LoginController extends Controller
     
             switch ($user->role_id) {
                 case 1:
-                    return redirect()->intended('/manuAdmin');
+                    return redirect()->intended('/menuadmin');
                     break;
                 case 2:
-                    return redirect()->intended('/chefs');
+                    return redirect()->route('chefs.index');
                     break;
                 case 3:
-                    return redierct()->intended('/cajero');
+                    return redirect()->intended('/cajero');
                     break;
                 default:
                     return redirect()->intended('/home');

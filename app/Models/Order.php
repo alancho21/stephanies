@@ -13,12 +13,10 @@ class Order extends Model
 
     protected $fillable = ['customer_name', 'total_amount', 'status'];
 
-    /**
-     * Get the order details associated with the order.
-     */
     public function orderDetails()
     {
         return $this->hasMany(OrderDetail::class);
     }
+    
 }
 

@@ -61,8 +61,8 @@ Route::get('/inicio', function () {
     return view('inicio');
 });
 
-
-Route::get('/chefs', [OrderController::class, 'index']);
+Route::get('/chefs', [OrderController::class, 'index'])->name('chefs.index');
+#Route::get('/chefs', [OrderController::class, 'index']);
 Route::get('/cajeroVer', [OrderController::class, 'index2']);
 Route::get('/cajeroCrear', [CajeroController::class, 'index']);
 Route::post('/create-order', [CajeroController::class, 'create']);
