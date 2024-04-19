@@ -58,6 +58,9 @@ Route::get('/cajero', function () {
 });
 
 
+
+
+
 Route::get('/inicio', function () {
     return view('inicio');
 });
@@ -65,12 +68,17 @@ Route::get('/inicio', function () {
 Route::get('/chefs', [OrderController::class, 'index'])->name('chefs.index');
 #Route::get('/chefs', [OrderController::class, 'index']);
 Route::get('/cajeroVer', [OrderController::class, 'index2']);
+Route::put('/update-order-status/{id}', [OrderController::class, 'updateStatus'])->name('update.order.status');
+
 Route::get('/cajeroCrear', [CajeroController::class, 'index']);
 Route::post('/create-order', [CajeroController::class, 'create']);
 Route::get('/js/app.js', function () {
     return response(file_get_contents(public_path('js/app.js')))
         ->header('Content-Type', 'text/javascript');
 });
+
+
+Route::get('/tendencias', [OrderController::class, 'index3'])->name('tendencias.index');
 
 Route::resource('users', UserController::class);
 

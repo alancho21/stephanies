@@ -12,7 +12,7 @@
 
     
 <section class="container">
-        <div class="header">Bienvenido Admin</div>
+        <div class="header">Bienvenido</div>
         <div class="card-container">
             <div class="card" onclick="window.location.href='/cajeroVer';" >
                 <img src="images\v225_131.png" class="icon" alt="Gestionar Menú">
@@ -22,6 +22,15 @@
                 <img src="images\v225_130.png" class="icon" alt="Gestionar Usuarios">
                 <div class="text">Nueva Orden</div>
             </div>
+
+            <div class="mt-3 card" style="cursor: pointer;" onclick="document.getElementById('logout-form').submit();">
+  
+        <div class="text">Cerrar Sesión</div>
+    </div>
+  
+     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+        @csrf
+    </form>
        
         </div>
     

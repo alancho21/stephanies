@@ -1,12 +1,21 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <h2>Gestionar Usuarios</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestionar Usuarios</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="d-flex justify-content-between">
+    <a href='/menuadmin' class="btn btn-danger ml-auto">Regresar</a>
+</div>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Gestionar Usuarios</h2>
 
     <!-- Formulario para Crear o Editar -->
-    <div class="card mb-4">
-        <div class="card-header">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
             @isset($user)
                 Editar Usuario
             @else
@@ -19,15 +28,17 @@
                 @isset($user)
                     @method('PUT')
                 @endisset
+
                 <div class="form-group">
                     <label for="name">Nombre:</label>
                     <input type="text" class="form-control" id="name" name="name" value="{{ $user->name ?? '' }}" required>
                 </div>
+
                 <div class="form-group">
                     <label for="password">Contraseña:</label>
                     <input type="password" class="form-control" id="password" name="password" required>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="role_id">Rol:</label>
                     <select class="form-control" id="role_id" name="role_id" required>
@@ -38,7 +49,7 @@
                         @endforeach
                     </select>
                 </div>
-                
+
                 <!-- Dropdown List para Categoría -->
                 <div class="form-group" id="categoryDropdown" style="display: none;">
                     <label for="category_id">Categoría:</label>
@@ -50,8 +61,8 @@
                         @endforeach
                     </select>
                 </div>
-                
-                <button type="submit" class="btn btn-primary">
+
+                <button type="submit" class="btn btn-primary btn-block">
                     @isset($user)
                         Actualizar
                     @else
@@ -63,7 +74,7 @@
     </div>
 
     <!-- Lista de Usuarios -->
-    <h3>Lista de Usuarios</h3>
+    <h3 class="mt-4">Lista de Usuarios</h3>
     <table class="table">
         <thead>
             <tr>
@@ -93,19 +104,23 @@
     </table>
 
     <!-- JavaScript para Mostrar/Ocultar Dropdown de Categoría -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const roleDropdown = document.getElementById('role_id');
-            const categoryDropdown = document.getElementById('categoryDropdown');
-
-            roleDropdown.addEventListener('change', function() {
-                if (this.value == 2) {
-                    categoryDropdown.style.display = 'block';
+        $(document).ready(function() {
+            $('#role_id').change(function() {
+                if ($(this).val() == 2) {
+                    $('#categoryDropdown').show();
                 } else {
-                    categoryDropdown.style.display = 'none';
+                    $('#categoryDropdown').hide();
                 }
             });
         });
     </script>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </div>
-@endsection
+
+</body>
+</html>

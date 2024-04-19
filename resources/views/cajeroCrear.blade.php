@@ -13,6 +13,11 @@
 
 </head>
 <body>
+<div class="d-flex justify-content-between">
+    <a href='/cajero' class="btn btn-danger ml-auto">Regresar</a>
+</div>
+
+
     <div class="container mt-5">
         <h1 class="mb-4">Available Products</h1>
         <div class="row">

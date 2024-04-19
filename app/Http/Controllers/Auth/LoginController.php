@@ -49,5 +49,12 @@ class LoginController extends Controller
             'name' => 'Las credenciales proporcionadas no coinciden con nuestros registros.',
         ]);
     }
+
+    public function logout()
+{
+    Auth::logout();
+
+    return redirect()->route('login')->with('success', 'Has cerrado sesión exitosamente.');
+}
     
 }

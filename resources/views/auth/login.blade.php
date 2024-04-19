@@ -1,17 +1,23 @@
-<!-- resources/views/login.blade.php -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar sesión</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
 
-@extends('layouts.app')
-
-@section('content')
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white">{{ __('Iniciar sesión') }}</div>
-
                 <div class="card-body">
+                    <h2 class="text-center mb-4">Iniciar sesión</h2>
+
                     <form method="POST" action="{{ route('login') }}">
-                        @csrf
+                        <!-- CSRF Token -->
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         @if (session('status'))
                             <div class="alert alert-danger mb-4" role="alert">
@@ -20,31 +26,17 @@
                         @endif
 
                         <div class="form-group">
-                            <label for="name">{{ __('Nombre') }}</label>
-                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                            @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                            <label for="name">Nombre</label>
+                            <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                         </div>
 
                         <div class="form-group">
-                            <label for="password">{{ __('Contraseña') }}</label>
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                            <label for="password">Contraseña</label>
+                            <input id="password" type="password" class="form-control" name="password" required autocomplete="current-password">
                         </div>
 
-                        <div class="form-group mb-0">
-                            <button type="submit" class="btn btn-primary btn-block">
-                                {{ __('Iniciar sesión') }}
-                            </button>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
                         </div>
                     </form>
                 </div>
@@ -52,4 +44,11 @@
         </div>
     </div>
 </div>
-@endsection
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
