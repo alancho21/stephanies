@@ -23,8 +23,9 @@ Route::get('/usuarios', function () {
     return view('Usuarios');
 });
 Route::get('/menuadmin', function () {
-    return view('MenuAdmin');
-});
+    // Aquí puedes retornar la vista del menú del administrador
+    return view('menuadmin');
+})->name('menuadmin');
 
 Route::get('Usuarios',[UsuariosController::class,'index'])->name('Usuarios.index');
 Route::get('Usuarios/create',[UsuariosController::class,'create'])->name('Usuarios.create');

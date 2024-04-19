@@ -74,6 +74,10 @@
 
         <main class="py-4">
             @yield('content')
+
+            <div class="container mb-2 position-fixed bottom-0 end-10 p-3" style="margin-right: 0px;">
+                <a class="btn btn-primary" href="{{ route('menuadmin') }}">Regresar al Menú del Administrador</a>
+            </div>
         </main>
     </div>
 </body>
