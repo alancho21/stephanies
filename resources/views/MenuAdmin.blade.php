@@ -14,7 +14,7 @@
 <section class="container">
         <div class="header">Bienvenido Admin</div>
         <div class="card-container">
-            <div class="card" >
+            <div class="card" onclick="location.href='{{ route('products.index') }}'" >
                 <img src="images\v225_131.png" class="icon" alt="Gestionar Menú">
                 <div class="text">Gestionar Menú</div>
             </div>
@@ -24,23 +24,7 @@
             </div>
             <div class="card" >
                 <img src="images\v225_129.png" class="icon" alt="Inventario">
-                <div class="text">Inventario</div>
-            </div>
-            <div class="card" >
-                <img src="images\v160_223.png" class="icon" alt="Pedido de Stock">
-                <div class="text">Pedido de Stock</div>
-            </div>
-            <div class="card" >
-                <img src="images\v160_225.png" class="icon" alt="Comentarios">
-                <div class="text">Comentarios</div>
-            </div>
-            <div class="card" >
-                <img src="images\shop-solid.svg" class="icon" alt="Gestionar Proveedores">
-                <div class="text">Gestionar Proveedores</div>
-            </div>
-            <div class="card" >
-                <img src="images\store-solid.svg" class="icon" alt="pedidos">
-                <div class="text">Pedidos</div>
+                <div class="text">Tendencias</div>
             </div>
         </div>
     

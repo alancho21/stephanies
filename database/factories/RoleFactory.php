@@ -10,14 +10,19 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class RoleFactory extends Factory
 {
     /**
-     * Define the model's default state.
+     * Define the model's default state.c
      *
      * @return array<string, mixed>
      */
     public function definition(): array
     {
+        $roles = ['Admin', 'Chef', 'Cajero'];
+
+        // Generar nombre único de categoría
+        $name = $this->faker->unique()->randomElement($roles);
+
         return [
-            //
+            'name' => $name,
         ];
     }
 }
