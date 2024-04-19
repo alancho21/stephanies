@@ -18,40 +18,57 @@
 </div>
 
 
-    <div class="container mt-5">
-        <h1 class="mb-4">Available Products</h1>
-        <div class="row">
-            <!-- Product Cards Section -->
-            <div class="col-md-9">
-                <div class="row">
-                    @foreach($products as $product)
-                        <div class="col-md-4 mb-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $product->name }}</h5>
-                                    <p class="card-text">Description: {{ $product->description }}</p>
-                                    <p class="card-text">Price: ${{ $product->price }}</p>
-                                    <!-- Botón para añadir al Order Summary -->
-                                    <button class="btn btn-primary add-to-order" data-product-id="{{ $product->id }}" data-product-name="{{ $product->name }}" data-product-price="{{ $product->price }}">Add to Order</button>
-                                </div>
+<!-- ... -->
+<!-- ... -->
+
+<div class="container mt-5">
+    <h1 class="mb-4">Available Products</h1>
+    <div class="row">
+        <!-- Product Cards Section -->
+        <div class="col-md-9">
+            <div class="row">
+                @foreach($products as $product)
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $product->name }}</h5>
+                                <p class="card-text">Description: {{ $product->description }}</p>
+                                <p class="card-text">Price: ${{ $product->price }}</p>
+                                <!-- Botón para añadir al Order Summary -->
+                                <button class="btn btn-primary add-to-order" data-product-id="{{ $product->id }}" data-product-name="{{ $product->name }}" data-product-price="{{ $product->price }}">Add to Order</button>
                             </div>
                         </div>
-                    @endforeach
-                </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
+        <!-- Order Summary Section -->
+        <div class="col-md-3">
+            <h2 class="mb-4">Order Summary</h2>
+            
+            <!-- Formulario para ingresar el nombre del cliente -->
+            <div class="form-group">
+                <label for="customer-name">Nombre del Cliente:</label>
+                <input type="text" class="form-control" id="customer-name" placeholder="Ingrese el nombre del cliente">
             </div>
 
-            <!-- Order Summary Section -->
-            <div class="col-md-3">
-    <h2 class="mb-4">Order Summary</h2>
-    <ul id="order-summary">
-        <!-- Order summary items will be displayed here -->
-    </ul>
-    <p>Total: $<span id="order-total">0</span></p>
-    <!-- Botón para confirmar el pedido -->
-    <button class="btn btn-success" id="confirm-order-btn">Confirm Order</button>
-</div>
+            <ul id="order-summary">
+                <!-- Order summary items will be displayed here -->
+            </ul>
+            <p>Total: $<span id="order-total">0</span></p>
+            
+            <!-- Botón para confirmar el pedido -->
+            <button class="btn btn-success" id="confirm-order-btn">Confirm Order</button>
         </div>
     </div>
+</div>
+
+<!-- ... -->
+
+
+<!-- ... -->
+
 
     <!-- Incluir Bootstrap JS y Popper.js -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -151,37 +168,44 @@ function updateOrderSummary() {
         });
    
 
-$(document).on('click', '#confirm-order-btn', function() {
+        $(document).on('click', '#confirm-order-btn', function() {
+    const customerName = $('#customer-name').val();  // Obtener el nombre del cliente desde el input
+
     if (orderItems.length === 0) {
         alert('Please add some products to the order.');
+        return;
+    }
+
+    if (!customerName) {
+        alert('Please enter the customer name.');
         return;
     }
 
     if (confirm('Are you sure you want to place this order?')) {
         // Crear la orden y los detalles del pedido
         $.ajax({
-    url: '/create-order',
-    method: 'POST',
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-    data: {
-        orderItems: orderItems,
-        orderTotal: orderTotal
-    },
-    success: function(response) {
-        if (response.success) {
-            alert('Order placed successfully!');
-            // Limpiar el Order Summary y reiniciar la lista de productos
-            orderItems = [];
-            console.log('Order items cleared:', orderItems); // 
-            updateOrderSummary();
-        } else {
-            alert('Error placing order: ' + response.message);
-        }
-    },
-});
-
+            url: '/create-order',
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {
+                orderItems: orderItems,
+                orderTotal: orderTotal,
+                customerName: customerName  // Incluir el nombre del cliente aquí
+            },
+            success: function(response) {
+                if (response.success) {
+                    alert('Order placed successfully!');
+                    // Limpiar el Order Summary y reiniciar la lista de productos
+                    orderItems = [];
+                    console.log('Order items cleared:', orderItems);
+                    updateOrderSummary();
+                } else {
+                    alert('Error placing order: ' + response.message);
+                }
+            },
+        });
     }
 });
 
