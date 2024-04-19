@@ -1,64 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Proyecto Laravel</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .half {
-            width: 50%;
-            padding: 20px;
-        }
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-        }
-        .btn:hover {
-            background-color: #ddd;
-        }
-        .btn:active {
-            background-color: #ccc;
-        }
-        .logout-btn {
-            margin-bottom: 20px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="half">
-            <h1>Bienvenido</h1>
-            <p>Selecciona una opción:</p>
-            <a href="/cajeroCrear"><button class="btn">Crear orden</button></a>
-            <a href="/cajeroVer"><button class="btn">Ver ordenes</button></a>
-        </div>
-        <div class="half">
-            <form action="/logout" method="post">
-                @csrf
-                <button type="submit" class="btn logout-btn">Cerrar Sesión</button>
-            </form>
-        </div>
-    </div>
+@extends('app')
 
-    <script>
-        // Agregar funcionalidad adicional con JavaScript si es necesario
-    </script>
+@section('title', 'Menú Administrador')
+
+@section('extra-css')
+    {{-- Si tienes estilos específicos para esta vista, enlázalos aquí --}}
+    <link href="{{ asset('cssStyles/menuAdmin.css') }}" rel="stylesheet">
+@endsection
+
+@section('content')
+<body style="background: url('{{ asset('images/v152_180.png') }}') no-repeat center center fixed; background-size: cover;">
+
+    
+<section class="container">
+        <div class="header">Bienvenido Admin</div>
+        <div class="card-container">
+            <div class="card" onclick="window.location.href='/cajeroVer';" >
+                <img src="images\v225_131.png" class="icon" alt="Gestionar Menú">
+                <div class="text">Ordenes Pendientes</div>
+            </div>
+            <div class="card" onclick="window.location.href='/cajeroCrear';" style="cursor: pointer;">
+                <img src="images\v225_130.png" class="icon" alt="Gestionar Usuarios">
+                <div class="text">Nueva Orden</div>
+            </div>
+       
+        </div>
+    
+</section>
 </body>
-</html>
-
+@endsection
