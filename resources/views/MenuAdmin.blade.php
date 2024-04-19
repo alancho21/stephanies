@@ -18,7 +18,7 @@
                 <img src="images\v225_131.png" class="icon" alt="Gestionar Menú">
                 <div class="text">Gestionar Menú</div>
             </div>
-            <div class="card" onclick="window.location.href='/users';" style="cursor: pointer;">
+            <div class="card" onclick="window.location.href='/Usuarios';" style="cursor: pointer;">
                 <img src="images\v225_130.png" class="icon" alt="Gestionar Usuarios">
                 <div class="text">Gestionar Usuarios</div>
             </div>
