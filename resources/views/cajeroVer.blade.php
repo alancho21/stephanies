@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Ver ordenes</title>
     <link href="{{ asset('css/chefs.css') }}" rel="stylesheet">
     <!-- Bootstrap CSS -->
@@ -58,14 +59,15 @@
         const orderId = $(this).data('order-id');
         if(confirm('Are you sure you want to mark this order as completed?')){
             $.ajax({
-                url: '/update-order-status/' + orderId,
-                method: 'PUT',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: {
-                    status: 'completed'
-                },
+    url: '/update-order-status/' + orderId,
+    method: 'POST', // Mantén el método POST aquí
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    data: {
+        '_method': 'PUT', // Añade este campo para especificar el método PUT
+        'status': 'completed'
+    },
                 success: function(response){
                     if(response.success){
                         alert('Order marked as completed successfully.');
