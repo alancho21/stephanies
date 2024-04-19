@@ -24,6 +24,16 @@ Route::get('/menuadmin', function () {
     return view('MenuAdmin');
 });
 
+Route::get('/cajero', function () {
+    return view('Cajero');
+});
+
+
+Route::get('/inicio', function () {
+    return view('inicio');
+});
+
+
 Route::get('/chefs', [OrderController::class, 'index']);
 Route::get('/cajeroVer', [OrderController::class, 'index2']);
 Route::get('/cajeroCrear', [CajeroController::class, 'index']);
