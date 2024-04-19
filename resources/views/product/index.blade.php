@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Product
+    Menu
 @endsection
 
 @section('content')
@@ -11,16 +11,14 @@
                 <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-
                             <span id="card_title">
                                 {{ __('Product') }}
                             </span>
-
-                             <div class="float-right">
+                            <div class="float-right">
                                 <a href="{{ route('products.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
-                              </div>
+                            </div>
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -35,13 +33,11 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
-										<th>Name</th>
-										<th>Price</th>
-										<th>Description</th>
-										<th>Category Id</th>
-										<th>Ruta Imagen</th>
-
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th>Description</th>
+                                        <th>Category Id</th>
+                                        <th>Ruta Imagen</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -49,13 +45,11 @@
                                     @foreach ($products as $product)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
-											<td>{{ $product->name }}</td>
-											<td>{{ $product->price }}</td>
-											<td>{{ $product->description }}</td>
-											<td>{{ $product->category_id }}</td>
-											<td>{{ $product->ruta_imagen }}</td>
-
+                                            <td>{{ $product->name }}</td>
+                                            <td>{{ $product->price }}</td>
+                                            <td>{{ $product->description }}</td>
+                                            <td>{{ $product->category_id }}</td>
+                                            <td>{{ $product->ruta_imagen }}</td>
                                             <td>
                                                 <form action="{{ route('products.destroy',$product->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('products.show',$product->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>

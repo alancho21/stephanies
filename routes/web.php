@@ -22,8 +22,9 @@ Route::get('/gestionarUsuarios', function () {
     return view('gestionarUsuarios');
 });
 Route::get('/menuadmin', function () {
-    return view('MenuAdmin');
-});
+    // Aquí puedes retornar la vista del menú del administrador
+    return view('menuadmin');
+})->name('menuadmin');
 
 
 
