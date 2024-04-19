@@ -1,39 +1,111 @@
-@extends('app')
-
-@section('title', 'Gestionar Usuarios')
-
-@section('extra-css')
-    <link href="{{ asset('css/gestionarUsuarios.css') }}" rel="stylesheet">
-@endsection
+@extends('layouts.app')
 
 @section('content')
+<div class="container">
+    <h2>Gestionar Usuarios</h2>
 
-<section class="form-section">
-        <h1>Gestionar Usuarios</h1>
-        <div class="user-form-container">
-            <form id="user-form">
-                <!-- Campos de formulario aquí -->
-                <div class="input-group"><label for="id">Id</label><input type="text" id="id" name="id"></div>
-                <div class="input-group"><label for="nombre">Nombre</label><input type="text" id="Nombre" name="nombre"></div>
-                <div class="input-group"><label for="apellido">Apellido</label><input type="text" id="Apellido" name="apellido"></div>
-                <div class="input-group"><label for="edad">Edad</label><input type="text" id="Edad" name="edad"></div>
-                <div class="input-group"><label for="telefono">Telefono</label><input type="text" id="Telefono" name="telefono"></div>
-                <div class="input-group"><label for="correo">Correo</label><input type="email" id="Correo" name="correo"></div>
-                <div class="input-group"><label for="correo">Contraseña</label><input type="email" id="Correo" name="correo"></div>
-                <div class="input-group"><label for="tipo">Tipo</label><input type="text" id="Tipo" name="tipo"></div>
-                <!-- ... otros campos ... -->
+    <!-- Formulario para Crear o Editar -->
+    <div class="card mb-4">
+        <div class="card-header">
+            @isset($user)
+                Editar Usuario
+            @else
+                Agregar Usuario
+            @endisset
+        </div>
+        <div class="card-body">
+            <form action="{{ isset($user) ? route('gestionarUsuarios.update', $user->id) : route('gestionarUsuarios.store') }}" method="POST">
+                @csrf
+                @isset($user)
+                    @method('PUT')
+                @endisset
+                <div class="form-group">
+                    <label for="name">Nombre:</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{ $user->name ?? '' }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="role_id">Rol:</label>
+                    <select class="form-control" id="role_id" name="role_id" required>
+                        @foreach($roles as $role)
+                            <option value="{{ $role->id }}" {{ isset($user) && $user->role_id == $role->id ? 'selected' : '' }}>
+                                {{ $role->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+                
+                <!-- Dropdown List para Categoría -->
+                <div class="form-group" id="categoryDropdown" style="display: none;">
+                    <label for="category_id">Categoría:</label>
+                    <select class="form-control" id="category_id" name="category_id" required>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}">
+                                {{ $category->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">
+                    @isset($user)
+                        Actualizar
+                    @else
+                        Guardar
+                    @endisset
+                </button>
             </form>
-            <div class="action-buttons">
-                <button type="button" class="btn action">Agregar</button>
-                <button type="button" class="btn action">Modificar</button>
-                <button type="button" class="btn action">Eliminar</button>
-                <button type="button" class="btn action">Buscar</button>
-                <button type="button" class="btn action" onclick="location.href='{{ route('consultarusuarios') }}'">Consultar</button>
-            </div>
         </div>
-        <div class="footer-buttons">
-        
-            <button type="button" class="btn footer" onclick="location.href='{{ route('menuadmin') }}'">Regresar</button>
-        </div>
-    </section>
+    </div>
+
+    <!-- Lista de Usuarios -->
+    <h3>Lista de Usuarios</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Rol</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($users as $user)
+            <tr>
+                <td>{{ $user->id }}</td>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->role->name }}</td>
+                <td>
+                    <a href="{{ route('gestionarUsuarios.edit', $user->id) }}" class="btn btn-warning">Editar</a>
+                    <form action="{{ route('gestionarUsuarios.destroy', $user->id) }}" method="POST" style="display: inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <!-- JavaScript para Mostrar/Ocultar Dropdown de Categoría -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const roleDropdown = document.getElementById('role_id');
+            const categoryDropdown = document.getElementById('categoryDropdown');
+
+            roleDropdown.addEventListener('change', function() {
+                if (this.value == 2) {
+                    categoryDropdown.style.display = 'block';
+                } else {
+                    categoryDropdown.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</div>
 @endsection

@@ -1,17 +1,16 @@
-@extends('template.plantilla')
-@section('contenedor')
-<form action="{{ route('Usuarios.store') }}" method="POST">
+<form action="{{ route('usuarios.store') }}" method="POST">
     @csrf
     <div>
-        <label for="">Nombre</label>
-        <input type="text" name="nombre" class="form-control">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" required>
     </div>
     <div>
-        <label for="">Contraseña</label>
-        <input type="text" name="contraseña" class="form-control">
+        <label for="contraseña">Contraseña:</label>
+        <input type="password" name="contraseña" required>
     </div>
     <div>
-        <input  type="submit" value="Enviar" class="btn btn-success">
+        <label for="rol">Rol:</label>
+        <input type="text" name="rol" required>
     </div>
+    <button type="submit">Guardar</button>
 </form>
-@endsection

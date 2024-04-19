@@ -3,83 +3,99 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Http\Requests\UserRequest;
+use App\Models\Role;
+use App\Models\Category;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
-/**
- * Class UserController
- * @package App\Http\Controllers
- */
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-
-     
     public function index()
     {
-        $users = User::paginate();
-
-        return view('user.index', compact('users'))
-            ->with('i', (request()->input('page', 1) - 1) * $users->perPage());
+        $users = User::with('role')->get();
+        $roles = Role::all();
+        $categories = Category::all();  
+        return view('gestionarUsuarios', compact('users', 'roles', 'categories'));  
     }
+    
+    
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
-    {
-        $user = new User();
-        return view('user.create', compact('user'));
+{
+    $roles = Role::all();
+    $categories = Category::all();
+    return view('gestionarUsuarios.create', compact('roles', 'categories'));
+}
+
+
+    public function store(Request $request)
+{
+    $request->validate([
+        'name' => 'required',
+        'password' => 'required',
+        'role_id' => 'required|exists:roles,id',
+        'category_id' => 'nullable|exists:categories,id',
+        
+    ]);
+    
+
+    $user = new User([
+        'name' => $request->get('name'),
+        'password' => Hash::make($request->get('password')),
+        'role_id' => $request->get('role_id'),
+    ]);
+
+    $user->save();
+
+    if ($request->get('role_id') == 2 && $request->has('category_id')) {
+        $user->categories()->attach($request->get('category_id'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(UserRequest $request)
-    {
-        User::create($request->validated());
+    return redirect()->route('gestionarUsuarios.index')->with('success', 'Usuario agregado exitosamente');
 
-        return redirect()->route('users.index')
-            ->with('success', 'User created successfully.');
+
+}
+
+public function edit($id)
+{
+    $user = User::with('categories')->findOrFail($id);
+    $roles = Role::all();
+    $categories = Category::all();
+    return view('editarUsuarios', compact('user', 'roles', 'categories'));
+}
+
+
+
+    public function update(Request $request, $id)
+{
+    $request->validate([
+        'name' => 'required',
+        'password' => 'required',
+        'role_id' => 'required|exists:roles,id',
+        'category_id' => 'nullable|exists:categories,id',
+    ]);
+
+    $user = User::findOrFail($id);
+    $user->name = $request->get('name');
+    $user->password = Hash::make($request->get('password'));
+    $user->role_id = $request->get('role_id');
+    $user->save();
+
+    if ($request->get('role_id') == 2 && $request->has('category_id')) {
+        $user->categories()->sync([$request->get('category_id')]);
+    } else {
+        $user->categories()->detach();
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show($id)
-    {
-        $user = User::find($id);
+    return redirect()->route('gestionarUsuarios.index')->with('success', 'Usuario actualizado exitosamente');
 
-        return view('user.show', compact('user'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        $user = User::find($id);
-
-        return view('user.edit', compact('user'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UserRequest $request, User $user)
-    {
-        $user->update($request->validated());
-
-        return redirect()->route('users.index')
-            ->with('success', 'User updated successfully');
-    }
+}
 
     public function destroy($id)
     {
-        User::find($id)->delete();
+        $user = User::findOrFail($id);
+        $user->delete();
 
-        return redirect()->route('users.index')
-            ->with('success', 'User deleted successfully');
+        return redirect()->route('gestionarUsuarios.index')->with('success', 'Usuario eliminado exitosamente');
     }
 }

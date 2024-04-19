@@ -11,19 +11,20 @@ class OrderController extends Controller
 
    
    public function index()
-   {
-       $categoryId = 1; // ID de la categoría deseada
+{
+    $user = auth()->user(); // Obtener el usuario autenticado
+    $categoryId = $user->category_id; // Obtener el category_id del usuario autenticado
 
-       $orders = Order::whereHas('orderDetails.product', function ($query) use ($categoryId) {
-           $query->where('category_id', $categoryId);
-       })->with(['orderDetails' => function ($query) use ($categoryId) {
-           $query->whereHas('product', function ($query) use ($categoryId) {
-               $query->where('category_id', $categoryId);
-           });
-       }])->get();
+    $orders = Order::whereHas('orderDetails.product', function ($query) use ($categoryId) {
+        $query->where('category_id', $categoryId);
+    })->with(['orderDetails' => function ($query) use ($categoryId) {
+        $query->whereHas('product', function ($query) use ($categoryId) {
+            $query->where('category_id', $categoryId);
+        });
+    }])->get();
 
-       return view('Chefs', ['orders' => $orders]);
-   }
+    return view('chefs', ['orders' => $orders]);
+}
 
    public function index2()
    {

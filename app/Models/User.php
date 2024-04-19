@@ -19,9 +19,16 @@ use Illuminate\Database\Eloquent\Model;
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class User extends Model
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as AuthenticatableUser;
+use Illuminate\Notifications\Notifiable;
+
+class User extends AuthenticatableUser implements Authenticatable
 {
-    protected $fillable = ['name', 'email'];
+    protected $fillable = [
+        'name', 'password', 'role_id',
+    ];
 
     protected $perPage = 20;
 
@@ -38,7 +45,13 @@ class User extends Model
         ];
     }
 
-    public function role(){
-        return $this->belongsTo(role::class);
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'chef_categories', 'user_id', 'category_id');
     }
 }
